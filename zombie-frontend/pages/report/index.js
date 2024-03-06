@@ -1,64 +1,44 @@
-import { Grid } from "@mui/material"
-import axios from "axios"
-import InfoBox from "../../components/InfoBox"
+import { Grid, Container } from "@mui/material";
+import Box from "@mui/material/Box";
+import InfoBox from "../../components/InfoBox";
+import PageSectionTitle from "../../components/PageSectionTitle";
+import useReport from "./hooks";
+import styles from "./styles";
 
-export default function Report({ healthy, infected, resources }) {
+export default function Report() {
+  const { healthy, infected, resources } = useReport();
+
   return (
-    <Grid container justifyContent={"center"} spacing={4}>
-      <Grid item>
-        <InfoBox
-          title={"Number of Healthy Survivors"}
-          subtitle={healthy}
-          description={"Last 30 days"}
-        />
-      </Grid>
-      <Grid item>
-        <InfoBox
-          title={"Number of Infected Survivors"}
-          subtitle={infected}
-          description={"Last 30 days"}
-        />
-      </Grid>
-      <Grid item>
-        <InfoBox
-          title={"Average Resource Allocation"}
-          subtitle={resources}
-          description={"10 days worth"}
-        />
-      </Grid>
-    </Grid>
-  )
-}
-
-export async function getServerSideProps(context) {
-  const uri =
-    process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PATH_SURVIVORS
-  const response = await axios.get(uri)
-
-  if (response.data) {
-    const length = response.data.length
-
-    let healthy = 0
-    let infected = 0
-    let total = 0
-
-    for (let survivor of response.data) {
-      if (survivor.isInfected) {
-        infected += 1
-      } else {
-        healthy += 1
-      }
-      total += survivor.inventory.length
-    }
-
-    const resources = total / length
-
-    return {
-      props: { healthy, infected, resources },
-    }
-  } else {
-    return {
-      props: { healthy: 0, infected: 0, resources: 0 },
-    }
-  }
+    <Container sx={{ ...styles.container }}>
+      <PageSectionTitle
+        title={"Reports"}
+        subtitle={"Your camp has grown 5% this month"}
+      />
+      <Box sx={{ ...styles.tableContainer }}>
+        <Grid sx={{ ...styles.gridContainer }} container>
+          <Grid item>
+            <InfoBox
+              title={"Number of Healthy Survivors"}
+              subtitle={healthy}
+              description={"Last 30 days"}
+            />
+          </Grid>
+          <Grid item>
+            <InfoBox
+              title={"Number of Infected Survivors"}
+              subtitle={infected}
+              description={"Last 30 days"}
+            />
+          </Grid>
+          <Grid item>
+            <InfoBox
+              title={"Average Resource Allocation"}
+              subtitle={resources}
+              description={"10 days worth"}
+            />
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
+  );
 }

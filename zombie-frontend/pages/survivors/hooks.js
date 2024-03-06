@@ -41,7 +41,7 @@ export default function useSurvivors() {
         setRows(tempRows);
       }
     } catch (error) {
-      //console.log("An error occurred - ", error.message);
+      //
     }
   };
 
@@ -53,12 +53,11 @@ export default function useSurvivors() {
     setIsOpen(false);
     try {
       const response = await createSurvivor(newSurvivor);
-      //console.log("Response - ", response);
       if (response) {
         getSurvivorsListing();
       }
     } catch (error) {
-      //console.log("An error occurred - ", error.response);
+      //
     }
   };
 

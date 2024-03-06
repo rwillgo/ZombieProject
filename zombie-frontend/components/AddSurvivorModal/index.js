@@ -26,38 +26,20 @@ export default function AddSurvivorModal({ open, onCancel, onAddSurvivor }) {
   return (
     <div>
       <Modal open={open}>
-        <Box sx={{ ...styles }}>
+        <Box sx={{ ...styles.container }}>
           <FormControl defaultValue="" required>
             <FormGroup>
-              <FormLabel
-                sx={{
-                  pt: 2,
-                }}
-              >
-                Name
-              </FormLabel>
+              <FormLabel sx={{ ...styles.label }}>Name</FormLabel>
               <TextField
                 placeholder="John Doe"
                 {...register("name", { required: true })}
               />
-              <FormLabel
-                sx={{
-                  pt: 2,
-                }}
-              >
-                Age
-              </FormLabel>
+              <FormLabel sx={{ ...styles.label }}>Age</FormLabel>
               <TextField
                 placeholder="Your age here"
                 {...register("age", { required: true })}
               />
-              <FormLabel
-                sx={{
-                  pt: 2,
-                }}
-              >
-                Gender
-              </FormLabel>
+              <FormLabel sx={{ ...styles.label }}>Gender</FormLabel>
               <Controller
                 rules={{ required: true }}
                 control={control}
@@ -77,22 +59,12 @@ export default function AddSurvivorModal({ open, onCancel, onAddSurvivor }) {
                   </RadioGroup>
                 )}
               />
-              <FormLabel
-                sx={{
-                  pt: 2,
-                }}
-              >
-                Inventory
-              </FormLabel>
+              <FormLabel sx={{ ...styles.label }}>Inventory</FormLabel>
               <TextField
                 placeholder="Your inventory here"
                 {...register("inventory", { required: true })}
               />
-              <FormLabel
-                sx={{
-                  pt: 2,
-                }}
-              >
+              <FormLabel sx={{ ...styles.label }}>
                 Is survivor infected?
               </FormLabel>
               <Controller
@@ -115,15 +87,7 @@ export default function AddSurvivorModal({ open, onCancel, onAddSurvivor }) {
                 )}
               />
             </FormGroup>
-            <Box
-              component="section"
-              sx={{
-                pt: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
+            <Box component="section" sx={{ ...styles.buttons }}>
               <Button
                 variant={"outlined"}
                 onClick={() => {
