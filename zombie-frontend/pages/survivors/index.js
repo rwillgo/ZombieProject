@@ -42,7 +42,6 @@ export default function Survivors() {
             },
           }}
           pageSizeOptions={[5, 10]}
-          checkboxSelection
         />
       </Box>
       <AddSurvivorModal

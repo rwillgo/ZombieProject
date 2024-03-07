@@ -1,4 +1,5 @@
-import { Grid, Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import InfoBox from "../../components/InfoBox";
 import PageSectionTitle from "../../components/PageSectionTitle";

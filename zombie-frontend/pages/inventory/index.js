@@ -1,24 +1,21 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Grid, Container } from "@mui/material";
-import axios from "axios";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import PageSectionTitle from "../../components/PageSectionTitle";
-import { getSurvivors } from "../../services/api";
+import useInventory from "./hooks";
+import styles from "./styles";
 
-export default function Inventory({ columns, rows, error }) {
+export default function Inventory() {
+  const { columns, rows } = useInventory();
+
   return (
-    <Container
-      style={{
-        border: "1px solid pink",
-        width: "100hw",
-        height: "100vh",
-      }}
-    >
+    <Container sx={{ ...styles.container }}>
       <PageSectionTitle
         title={"List of Survivor Inventories"}
         subtitle={"You have 10,000 inventories logged"}
       />
-      <div style={{ height: "500", width: "100%" }}>
+      <Box sx={{ ...styles.tableContainer }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -28,41 +25,41 @@ export default function Inventory({ columns, rows, error }) {
             },
           }}
           pageSizeOptions={[5, 10]}
-          checkboxSelection
+          disableRowSelectionOnClick
         />
-      </div>
+      </Box>
     </Container>
   );
 }
 
-export async function getServerSideProps(context) {
-  const response = await getSurvivors();
+// export async function getServerSideProps(context) {
+//   const response = await getSurvivors();
 
-  const columns = [
-    { field: "name", headerName: "Name", width: 200 },
-    { field: "inventory", headerName: "Inventories", width: 200 },
-    { field: "action", headerName: "Action", width: 200 },
-  ];
+//   const columns = [
+//     { field: "name", headerName: "Name", width: 200 },
+//     { field: "inventory", headerName: "Inventories", width: 200 },
+//     { field: "action", headerName: "Action", width: 200 },
+//   ];
 
-  if (response.data) {
-    const rows = [];
+//   if (response.data) {
+//     const rows = [];
 
-    for (let survivor of response.data) {
-      const aRow = {
-        id: response.data.indexOf(survivor),
-        name: survivor.name,
-        inventory: survivor.isInfected ? "Infected" : "Healthy",
-        action: survivor.age,
-      };
-      rows.push(aRow);
-    }
+//     for (let survivor of response.data) {
+//       const aRow = {
+//         id: response.data.indexOf(survivor),
+//         name: survivor.name,
+//         inventory: survivor.isInfected ? "Infected" : "Healthy",
+//         action: survivor.age,
+//       };
+//       rows.push(aRow);
+//     }
 
-    return {
-      props: { columns, rows, error: null },
-    };
-  } else {
-    return {
-      props: { columns, rows: null, error: null },
-    };
-  }
-}
+//     return {
+//       props: { columns, rows, error: null },
+//     };
+//   } else {
+//     return {
+//       props: { columns, rows: null, error: null },
+//     };
+//   }
+// }

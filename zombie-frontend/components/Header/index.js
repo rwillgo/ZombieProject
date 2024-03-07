@@ -19,7 +19,7 @@ function Header() {
             size="large"
             color="inherit"
             //variant={currentIndex === index ? "contained" : undefined}
-            onClick={() => onClickHandler(index)}
+            //onClick={() => onClickHandler(index)}
           >
             <Link href={paths[index]}>{name}</Link>
           </Button>
