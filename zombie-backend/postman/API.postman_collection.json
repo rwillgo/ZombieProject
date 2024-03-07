@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "a4b6b87a-2fab-4f12-aa8c-e14b160c7939",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33380823"
+	},
+	"item": [
+		{
+			"name": "Create Survivor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Test1\",\n    \"age\":\"2\",\n    \"gender\":\"male\",\n    \"lastLocation\":\"12345.678,12345.678\",\n    \"inventory\": {\n        \"id\":\"1111\",\n        \"quantity\":10\n    },\n    \"isInfected\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/survivors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"survivors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Survivor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Test333\",\n    \"age\":\"2\",\n    \"gender\":\"male\",\n    \"lastLocation\":\"12345.678,12345.678\",\n    \"inventory\": {\n        \"id\":\"1111\",\n        \"quantity\":10\n    },\n    \"isInfected\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/survivors/65e6c2d5f885bb01dc8ab065",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"survivors",
+						"65e6c2d5f885bb01dc8ab065"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Survivors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/survivors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"survivors"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
